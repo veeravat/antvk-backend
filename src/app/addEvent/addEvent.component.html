@@ -1,0 +1,35 @@
+<div class="side-form">
+  <i [routerLink]="['place']" class="fas fa-angle-double-left fa-3x"></i>
+  <h1 class="text-center">Add new Event</h1>
+  <div class="form-container">
+      <form ng-form="addPlace" role="form" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="">Event name</label>
+          <input [(ngModel)]="model.eventName" name="eventName" type="text" class="form-control"
+            placeholder="Ex. ทานอสถล่มจักรวาล">
+        </div>
+        <div class="form-group">
+            <label for="">Event Date</label>
+            <input [(ngModel)]="model.eventDate" name="eventDate" type="date" class="form-control">
+          </div>
+        <div class="form-group">
+          <label for="">Event Description</label>
+          <textarea [(ngModel)]="model.eventDesc" name="eventDesc" class="form-control" placeholder="Ex. ไม่นะทานอสส อย่าทำเราน้าาา......"
+            rows="10"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="">Event image</label>
+          <input (change)=getImage($event) name="eventImage" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg">
+        </div>
+  
+        <div class="text-center">
+          <a class="btn btn-dark" [routerLink]="'[place]'" role="button">Close</a>
+  
+          <button (click)=addPlace() class="btn btn-primary">Submit</button>
+        </div>
+  
+      </form>
+
+  </div>
+</div>

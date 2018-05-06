@@ -1,0 +1,46 @@
+<div class="side-form">
+  <i [routerLink]="['place']" class="fas fa-angle-double-left fa-3x"></i>
+  <h1>Add new place</h1>
+  <div class="form-container">
+
+    <form ng-form="addPlace" role="form" enctype="multipart/form-data">
+      <agm-map id="map" [style.height.px]="300" [style.width.px]="470" [zoom]="12" [disableDefaultUI]="false" [streetViewControl]=false
+        (mapClick)=mapClick(markers,$event)>
+        <agm-marker [latitude]="markers.lat" [longitude]="markers.lng" [label]="markers.label" [markerDraggable]="markers.draggable"
+          (dragEnd)="markerDragEnd(markers, $event)">
+        </agm-marker>
+      </agm-map>
+      <br>
+      <div class="form-group">
+        <label for="">Place name</label>
+        <input [(ngModel)]="model.placeName" name="placeName" (keyup)=searchPlace($event.target.value) type="text" class="form-control"
+          placeholder="Ex. วัดพระแก้ว">
+      </div>
+      <div class="form-group">
+        <label for="">Place Description</label>
+        <textarea [(ngModel)]="model.placeDescription" name="placeDescription" class="form-control" placeholder="Ex. วัดพระศรีรัตนศาสดาราม หรือที่เรียกกันทั่วไปว่าวัดพระแก้ว......"
+          rows="10"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Place type</label>
+        <select (change)=setType($event) class="form-control" name="type" id="">
+          <option selected disabled value="">Please select place type</option>
+          <option value="0">ตามรอยในหลวง ร.๙</option>
+          <option value="1">ตามรอยบุพเพสันนิวาส</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="">Place image</label>
+        <input (change)=getImage($event) name="placeImage" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg">
+      </div>
+
+      <div class="text-center">
+        <a class="btn btn-dark" [routerLink]="'[place]'" role="button">Close</a>
+
+        <button (click)=addPlace() class="btn btn-primary">Submit</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
